@@ -18,4 +18,6 @@ For this it is important, that you give your icons id names. You can do this in 
 7. See how they will look 
 8. Edit the background color, when needed
 
-Please note that as for now (November 2015) the "Reload File" functionality and the background color chooser will only work in Chrome and Firefox.
+>  Please note that as for now (November 2015) the "Reload File" functionality and the background color chooser will only work in Chrome and Firefox.
+
+>  Please note that css, js and html markdown are all merged into the html. This is not meant to be beautiful but could come in handy, as you could easily pass the html on or download it and open it offline on your browser without any hassle or additional files. The image folder contains the images of the help layer.
