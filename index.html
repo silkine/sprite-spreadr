@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by anonymous (http://jsbin.com/yalexofoni/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Raleway:100,400,900);
+    body {
+        background-color: #3BBCE4;
+        margin: 0;
+        font-family: 'Raleway', Tahoma, sans-serif;
+        font-weight: 400;
+        color: white;
+        letter-spacing: 1px;
+        transition: all .2s ease;
+    }
+    
+    .modal-layer-help-container {
+        background-color: rgba(0, 0, 0, .9);
+        padding: 60px;
+        text-align: center;
+        top: 0;
+        min-height: 100%;
+        height: auto;
+        width: 100%;
+        position: absolute;
+        z-index: 2000;
+        box-sizing: border-box;
+        transition: all .3s ease;
+    }
+    
+    .closed {
+        transform: scale(.0001);
+        opacity: 0;
+        transform-origin: top;
+    }
+    
+    .modal-layer-help-pic-text-container {
+        pointer-events: none;
+        margin-bottom: 40px;
+    }
+    
+    .modal-layer-help-pic-text-container p {
+        padding: 20px;
+        width: 30%;
+        text-align: left;
+    }
+    
+    .modal-layer-help-pic-text-container img {
+        max-width: 400px;
+    }
+    
+    .modal-layer-help-pic-text-container * {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 28px;
+    }
+    
+    .modal-layer-help-pic-container {
+        width: 500px;
+    }
+    
+    .closing-cross {
+        position: fixed;
+        width: 60px;
+        fill: white;
+        right: 60px;
+        top: 10px;
+        cursor: pointer;
+    }
+    
+    .iconsGoHere {
+        margin-bottom: 80px;
+        text-align: center;
+    }
+    
+    .icon-names {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.4);
+        letter-spacing: 0;
+        vertical-align: top;
+        margin: 0 10px 24px;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+    
+    .icon-containers {
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .button {
+        background-color: rgba(255, 255, 255, 0.23);
+        color: white;
+        padding: 17px;
+        display: inline-block;
+        line-height: 22px;
+        transition: all .3s;
+        height: 60px;
+        box-sizing: border-box;
+        margin: 0 10px;
+        border-radius: 3px;
+        box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.17);
+    }
+    
+    .button:hover,
+    .button-secondary:hover {
+        background-color: rgba(0, 0, 0, .1);
+        box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.17);
+        transform: translate(-1px, -1px);
+    }
+    
+    .button:active,
+    .button-secondary:active {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.17);
+    }
+    
+    .button-secondary {
+        background-color: transparent;
+    }
+    
+    .verstecken {
+        display: none;
+    }
+    
+    .colorpicker {
+        display: inline-block;
+    }
+    
+    #wunschfarbe {
+        vertical-align: center;
+        border-radius: 40%;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+    
+    #wunschfarbe::-webkit-color-swatch {
+        border-radius: 10px;
+    }
+    
+    #wunschfarbe::-moz-color-swatch {
+        border-radius: 10px;
+        width: 15px;
+        height: 15px;
+    }
+    
+    .upload-box {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.23);
+        min-height: 75px;
+        padding-top: 20px;
+        position: fixed;
+        bottom: 0;
+        width: 601px;
+        right: 50%;
+        margin-right: -300px;
+        border-radius: 10px 10px 0 0;
+        transition: all .3s;
+        overflow: hidden;
+    }
+    
+    .upload-box-content::before {
+        content: " ";
+        display: inline-block;
+        height: 100%;
+        width: 1%;
+        vertical-align: middle;
+    }
+    
+    .upload-box svg {
+        vertical-align: middle;
+        padding: 0;
+        fill: white;
+    }
+    
+    .upload-box label {
+        vertical-align: middle;
+    }
+    
+    .upload-box-content {
+        width: 601px;
+        position: absolute;
+        right: 0;
+    }
+    
+    .upload-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    h1 {
+        text-align: center;
+        font-weight: 100;
+        line-height: 10px;
+        font-size: 60px;
+        margin: 12px 0 40px;
+        line-height: normal;
+    }
+    
+    .logo {
+        margin: 0 auto;
+        width: 70px;
+        padding: 0;
+        margin-top: 20px;
+    }
+    
+    header {
+        text-align: center;
+        color: white;
+        fill:white;
+        transition: all .2s ease;
+    }
+    
+    label {}
+    
+    .icon-minify {
+        width: 32px;
+        fill: white;
+        float: right;
+        margin-right: 10px;
+        margin-top: -10px;
+        cursor: pointer;
+        transform: rotate(0deg);
+    }
+    
+    .icon-minify > svg {
+        fill: rgba(0, 0, 0, 0.20);
+    }
+    
+    .icon-minify:hover .icon-minify-arrow {
+        transform: translateY(4px);
+    }
+    
+    .icon-minify .icon-minify-arrow {
+        transform: translateY(0px);
+        transition: all .2s;
+    }
+    
+    .minified .button {
+        height: 0px;
+        display: none;
+    }
+    
+    .minified .icon-minify {
+        transform: rotate(180deg);
+    }
+    
+    .minified.upload-box {
+        width: 51px;
+        min-height: 30px;
+    }
+    
+    .help-icon {
+        width: 60px;
+        display: inline-block;
+    }
+    
+    .help-icon::after {
+        content: "How to make SVG Sprites with Illustrator";
+        font-size: 14px;
+        line-height: 23px;
+        width: 90px;
+        position: absolute;
+        border: 3px solid;
+        padding: 14px;
+        border-radius: 50%;
+        transition: all .2s;
+        opacity: 0;
+        transform: scale(.0001);
+        margin-top: -180px;
+        transform-origin: bottom left;
+    }
+    
+    .help-icon:hover.help-icon::after {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    @keyframes wiggle {
+        0% {
+            transform: rotate(4deg);
+        }
+        50% {
+            transform: rotate(-4deg);
+        }
+        100% {
+            transform: rotate(4deg);
+        }
+    }
+    
+    .wiggle:hover {
+        animation: wiggle 0.2s ease infinite;
+    }
+}
+.help-icon svg {
+    padding: 0;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
+                <path d="M45,26.5L25,36.9c-0.6,0.3-1.3,0.3-1.9,0L1.2,25.5c-0.9-0.5-0.9-1.9,0-2.4l15-7.8L30,27.8c0.9,0.8,2.1,1.3,3.4,1.3
+          c0.4,0,0.7,0,1.1-0.1L45,26.5z M40.1,1.6l18.4,16.6c0.7,0.7,0.4,2.1-0.6,2.3L33.8,26c-0.7,0.1-1.3,0-1.8-0.5L13.6,8.9
+          c-0.7-0.7-0.4-2.1,0.6-2.3l24.1-5.5C39,1,39.5,1.1,40.1,1.6z M46.9,36.1L25,47.5c-0.6,0.3-1.3,0.3-1.9,0L1.2,36.1
+          c-0.9-0.5-0.9-1.9,0-2.4l4.1-2.1c0.3-0.1,0.6-0.1,0.8,0l15.7,8.2c0.7,0.3,1.4,0.5,2.2,0.5c0.7,0,1.5-0.1,2.2-0.5l15.7-8.2
+          c0.3-0.1,0.6-0.1,0.8,0l4.1,2.1C47.7,34.2,47.7,35.6,46.9,36.1z M46.9,46.9L25,58.3c-0.6,0.3-1.3,0.3-1.9,0L1.2,46.9
+          c-0.9-0.5-0.9-1.9,0-2.4l4.1-2.1c0.3-0.1,0.6-0.1,0.8,0l15.7,8.2c0.7,0.3,1.4,0.5,2.2,0.5c0.7,0,1.5-0.1,2.2-0.5l15.7-8.2
+          c0.3-0.1,0.6-0.1,0.8,0l4.1,2.1C47.7,45,47.7,46.4,46.9,46.9z" />
+            </svg>
+        </div>
+        <h1>Sprite<span style="font-weight:900;">Spreadr</span>.svg<div class="help-icon">
+            <svg class="wiggle" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
+                <path d="M31.2,7C16.4,7,4.4,16.1,4.4,27.4c0,6.5,4,12.3,10.2,16c-1.3,2.7-3.1,5.4-5.5,6.9c0,0,10.3,0.4,16-3c2,0.3,4,0.5,6.1,0.5
+  C46,47.8,58,38.7,58,27.4S46,7,31.2,7z M30.1,42.8c-1.5,0-2.5-1.2-2.5-2.7c0-1.6,1.1-2.7,2.6-2.7c1.5,0,2.5,1.1,2.5,2.7
+  C32.7,41.7,31.7,42.8,30.1,42.8z M34.3,26.8c-1.9,2.2-2.6,4-2.4,6.2l0,1h-3.3l-0.1-1c-0.3-2.3,0.5-4.8,2.7-7.4c1.9-2.3,3-3.9,3-5.8
+  c0-2.2-1.4-3.6-4.1-3.7c-1.5,0-3.3,0.5-4.3,1.3l-1-2.7c1.4-1,3.8-1.7,6.1-1.7c4.9,0,7.1,3,7.1,6.3C38,22.3,36.3,24.4,34.3,26.8z" />
+            </svg>
+        </div></h1>
+        <p>The ultimate SVG icon sprite enfolding machine</p>
+    </header>
+    <div class="iconsGoHere"></div>
+    <div id="svg-container" style="display:none;"></div>
+    <div class="upload-box">
+        <div class="upload-box-content">
+            <input type="color" class="button" id="wunschfarbe" title="Hintergrundfarbe wählen">
+            <input class="verstecken" id="fileupload" type="file" accept="image/svg+xml">
+            <label for="fileupload" class="button">Upload .svg file here</label>
+            <div class="button button-secondary" id="reloadFile" title="Refresh">
+                <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 40" enable-background="new 0 0 50 40" xml:space="preserve" style="width:30px;">
+                    <path d="M4.3,20.6c0,5.4,4.7,9.6,9.7,9.6v4c-7,0-13.7-6-13.7-13.6S6.7,7,14.3,7H19V0.8l12.9,7.5L19,15.7V11h-4.7
+              C8.8,11,4.3,15.2,4.3,20.6z M36,6.2v4c5,0,9.7,4.5,9.7,9.9c0,5.4-4.6,9.9-10.1,9.9H31v-5.4l-12.9,7.5L31,39.5V34h4.6
+              c7.6,0,14.1-6.3,14.1-13.9C49.7,12.5,43,6.2,36,6.2z" />
+                </svg>
+                <!-- <label for="reloadFile">&nbsp&nbsp Refresh</label> -->
+            </div>
+            <label class="button button-secondary" for="wunschfarbe">Change BG Color</label>
+            <div class="icon-minify" id="iconMinify" title="Minify tool bar">
+                <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+                    <path class="icon-minify-arrow" d="M14,12V6h4v6h4l-6,6l-6-6H14z" />
+                    <path d="M25.5,26h-19C5.7,26,5,25.3,5,24.5S5.7,23,6.5,23h19c0.8,0,1.5,0.7,1.5,1.5S26.3,26,25.5,26z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="modal-layer-help-container closed">
+        <div class="closing-cross">
+            <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
+                <polygon points="51.9,50.5 31.4,30 51.9,9.5 50.5,8.1 30,28.6 9.5,8.1 8.1,9.5 28.6,30 8.1,50.5 9.5,51.9 30,31.4 50.5,51.9 " />
+            </svg>
+        </div>
+        <h1>Export SVG from Adobe Illustrator</h1>
+        <div class="modal-layer-help-pic-text-container">
+            <div class="modal-layer-help-pic-container">
+                <img src="images/pic-illustrator-canvas.png">
+            </div>
+            <h1>1.</h1>
+            <p>Get your Icons ready and create a new File in Illustrator. Choose a reasonable size for your Canvas. Preferably the original size of the icons. Stack your icons over each other. Center the icons to the canvas. Make sure nothing is "hanging over" the canvas. </p>
+        </div>
+        <div class="modal-layer-help-pic-text-container">
+            <div class="modal-layer-help-pic-container">
+                <img src="images/pic-illustrator-layers.png">
+            </div>
+            <h1>2.</h1>
+            <p>Be sure to name your groups or compound paths inside the layer palette of Illustrator. Paths without names and everything in pointy brackets like &lt;path&gt; will not be interpreted by SpriteSpreadr. And those names are crucial for your devs.</p>
+        </div>
+        <div class="modal-layer-help-pic-text-container">
+            <div class="modal-layer-help-pic-container">
+                <img src="images/pic-illustrator-save-as-dialog.png">
+            </div>
+            <h1>3.</h1>
+            <p>Save a .ai copy. Then save as SVG. Always make your changes in the .ai and export it again to SVG afterwards. Don't make changes in the .svg itself.</p>
+        </div>
+        <div class="modal-layer-help-pic-text-container">
+            <div class="modal-layer-help-pic-container">
+                <img src="images/pic-illustrator-svg-export-options.png">
+            </div>
+            <h1>4.</h1>
+            <p>Illustrator will prompt some SVG Export Options. Just leave it default. You don't need to change anything here. Click "OK".</p>
+        </div>
+        <div class="modal-layer-help-pic-text-container">
+            <div class="modal-layer-help-pic-container">
+                <img src="images/pic-sublime-svg-code.png">
+            </div>
+            <h1>5.</h1>
+            <p>Your SVG is ready for SpriteSpreadr. If you're not sure about your SVG you may have a look at it in any text editor. It should have &lt;svg&gt; tags around your paths and it should have these two urls inside of the &lt;svg&gt; tags: <span style="color:#afafaf">xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"</span></p>
+        </div>
+        <div class="modal-layer-help-pic-text-container">
+            <div class="modal-layer-help-pic-container">
+                <img src="images/pic-spritespreader-result.png">
+            </div>
+            <h1>6.</h1>
+            <p>Have fun optimising your icons or just enjoy a structured overview!</p>
+        </div>
+    </div>
+    <script id="jsbin-javascript">
+    var fileInput = document.getElementById('fileupload');
+    var reloadFile = document.getElementById('reloadFile');
+    var header = document.querySelector("header");
+    var body = document.body;
+
+
+    // wenn eine Datei ausgewählt wurde, wird "onFileSelected" 
+    // mit der Datei aufgerufen.
+    fileInput.addEventListener('change', function() {
+        onFileSelected(fileInput.files[0]);
+    });
+    reloadFile.addEventListener('click', function() {
+        onFileSelected(fileInput.files[0]);
+    });
+
+    //Farbanpassungen
+    //RGB Wert eines Elements ermitteln und in einem Array speichern und retürnen
+    function getRGB(element) {
+            var boxColor = getComputedStyle(element).backgroundColor;
+            var rgbArrayRAW = boxColor.match(/(\d+, \d+, \d+)/);
+            return rgbArrayRAW[1].split(", ");
+        }
+        //Brightness errechnen
+    function getBrightness() {
+            var rgbArray = getRGB(body);
+
+            //Extremwerte finden & Helligkeit errechnen
+            var max = Math.max.apply(null, rgbArray);
+            var min = Math.min.apply(null, rgbArray);
+
+
+            return (max + min) / 2;
+        }
+        //Headline je nach Helligkeit der BG Color umfärben
+    function matchColor(brightness) {
+        if (brightness >= 200) {
+            header.style.color = "black";
+            header.style.fill = "black";
+        } else {
+            header.style.color="white";
+            header.style.fill="white";
+        }
+    }
+    var wunschFarbe = document.getElementById('wunschfarbe');
+    wunschFarbe.addEventListener('change', function() {
+        document.body.style.backgroundColor = wunschFarbe.value;
+        matchColor(getBrightness());        
+
+    });
+
+    function onFileSelected(selectedFile) {
+        console.log('es wurde eine datei ausgewählt:', selectedFile);
+
+        // Die Datei muss jetzt erstmal eingelesen werden, das kann ein 
+        // FileReader machen.
+        var reader = new FileReader();
+
+        // wenn die Datei fertig gelesen wurde, wird dieser 
+        // event-handler aufgerufen.
+        reader.addEventListener('load', function() {
+            // wir können jetzt das ergebnis von dem FileReader lesen, 
+            // das ist dann der SVG-code
+            var svgCode = reader.result;
+
+            // jetzt muss aus dem SVG-code noch ein richtiges DOM-Element 
+            // gemacht werden, dafür müssen wir den DOMParser benutzen.
+            var parser = new DOMParser();
+            var svgDocument = parser.parseFromString(svgCode, "image/svg+xml");
+
+            // wenn alles erledigt ist, rufen wir die nächste Funktion auf.
+            onSvgLoaded(svgDocument.documentElement);
+        });
+
+        // jetzt soll der reader anfangen die datei zu lesen...
+        reader.readAsText(selectedFile);
+    }
+
+
+    // wird aufgerufen, wenn die hochgeladene svg-datei fertig verarbeitet 
+    // ist. Das svgElement ist der DOM-node von dem <svg>-tag.
+    function onSvgLoaded(svgElement) {
+            console.log("das SVG-element ist fertig:", svgElement);
+
+            // hier musst du jetzt das svg in deiner Seite ersetzen und dann 
+            // deinen Code laufen lassen um die einzelnen icons auszugeben:
+            svgContainer = document.querySelector("#svg-container");
+            svgContainer.innerHTML = "";
+            svgContainer.appendChild(svgElement);
+            svgDisplayer(svgElement);
+        }
+        
+
+    function svgDisplayer(svgElement) {
+
+        document.querySelector(".iconsGoHere").innerHTML = "";
+
+        var meineIcons = document.querySelectorAll("svg > g, svg > rect, svg > circle, svg > polygon, svg > path");
+
+
+        var allIds = [];
+        for (var i = 0, n = meineIcons.length; i < n; ++i) {
+            var el = meineIcons[i];
+            if (el.id) {
+                allIds.push(el.id);
+            }
+        }
+
+        var divforIcons = document.querySelector(".iconsGoHere");
+        var svgViewBox = svgElement.getAttribute("viewBox");
+        var svgWidth = svgViewBox.split(' ')[2];
+        var svgHeight = svgViewBox.split(' ')[3];
+        for (i = 0; i < allIds.length; i++) {
+
+            var mySvgContainer = document.createElement('div');
+
+            var mySvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            var useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+            useEl.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#" + allIds[i]);
+            mySvg.appendChild(useEl);
+            mySvg.setAttribute('viewBox', svgViewBox);
+
+            mySvg.setAttribute("width", svgWidth);
+            mySvg.setAttribute("height", svgHeight);
+            // mySvg.innerHTML = "<use xlink:href='#" + allIds[i] + "'>";
+            mySvgContainer.appendChild(mySvg);
+            divforIcons.appendChild(mySvgContainer);
+
+            var mySvgName = document.createElement('div');
+            mySvgName.innerHTML = allIds[i];
+            mySvgName.className = "icon-names";
+            mySvgName.setAttribute("style", "width:" + svgWidth + "px");
+
+            mySvgContainer.className = "icon-containers"
+            mySvgContainer.appendChild(mySvgName);
+
+        }
+
+        /*console.log(meineIcons);
+        console.log(meineIcons.length);
+        console.log(allIds);*/
+        console.log(svgViewBox);
+    }
+
+
+    //Minify Upload Box
+    var minifyUploadBoxButton = document.querySelector("#iconMinify");
+    var uploadBox = document.querySelector(".upload-box");
+
+
+    minifyUploadBoxButton.addEventListener('click', function() {
+        uploadBox.classList.toggle("minified");
+    });
+
+    //Get Help Layer opened
+    var openModalLayerIcon = document.querySelector(".help-icon");
+    var modalLayerHelpContainer = document.querySelector(".modal-layer-help-container");
+    var closingCross = document.querySelector(".closing-cross");
+
+    openModalLayerIcon.addEventListener('click', function() {
+        modalLayerHelpContainer.classList.toggle("closed");
+    });
+    closingCross.addEventListener('click', function() {
+        modalLayerHelpContainer.classList.toggle("closed");
+    });
+    </script>
+</body>
+
+</html>
