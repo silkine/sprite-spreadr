@@ -1,5 +1,5 @@
 # sprite-spreader
-## A tool, that helps you view your SVG icon sprites.
+## A tool, that helps you previewing your SVG icon sprites.
 
 This tool is designed for SVG icon sprites, that you created by stacking all icons over each other in order to use them in your html with the &lt;use&gt; tag for example. I found it hard to control how your icons might look on the website, when opening a SVG file directly in the browser, as browsers tend to open them in 100% width and height and sometimes you might need to change the white background in order to see transparency or white icons.
 
