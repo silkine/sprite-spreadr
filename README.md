@@ -1,5 +1,5 @@
 # sprite-spreader
-A tool, that helps you view your SVG icon sprites.
+## A tool, that helps you view your SVG icon sprites.
 
 This tool is designed for SVG icon sprites, that you created by stacking all icons over each other in order to use them in your html with the &lt;use&gt; tag for example. I found it hard to control how your icons might look on the website, when opening a SVG file directly in the browser, as browsers tend to open them in 100% width and height and sometimes you might need to change the white background in order to see transparency or white icons.
 
@@ -7,7 +7,7 @@ SpriteSpreadr will give you a structured overview by displaying your icons in a 
 
 For this it is important, that you give your icons id names. You can do this in Adobe Illustrator by naming your layers. This will turn out to be id attributes automatically with the export to SVG.
 
-# So your workflow with Adobe Illustrator would be: 
+## So your workflow with Adobe Illustrator would be: 
 
 1. Put all your SVG icons in groups or in 1 compound path per icon
 2. Place them all over each other.
