@@ -1,5 +1,12 @@
-# sprite-spreader
+# SpriteSpreader
 ## A tool, that helps you previewing your SVG icon sprites.
+
+
+
+<img 
+src="http://silkine.github.io/sprite-spreadr/images/pic-illustrator-canvas.png" width="150"> -> <img src="http://silkine.github.io/sprite-spreadr/images/pic-spritespreader-result.png" width="300">
+
+<sub>Icons created by Sergey Demushkin from the Noun Project</sub>
 
 This tool is designed for SVG icon sprites, that you created by stacking all icons over each other in order to use them in your html with the &lt;use&gt; tag for example. I found it hard to control how your icons might look on the website, when opening a SVG file directly in the browser, as browsers tend to open them in 100% width and height and sometimes you might need to change the white background in order to see transparency or white icons.
 
@@ -21,3 +28,7 @@ For this it is important, that you give your icons id names. You can do this in 
 >  Please note that as for now (November 2015) the "Reload File" functionality and the background color chooser will only work in Chrome and Firefox.
 
 >  Please note that css, js and html markdown are all merged into the html. This is not meant to be beautiful but could come in handy, as you could easily pass the html on or download it and open it offline on your browser without any hassle or additional files. The image folder contains the images of the help layer.
+
+[illustrator]: http://goo.gl/ujoeHl "opened illustrator file"
+[spritespreadr]: http://goo.gl/qjv0fn "SpriteSpreadr result"
+
