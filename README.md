@@ -4,7 +4,7 @@
 
 
 <img 
-src="http://silkine.github.io/sprite-spreadr/images/pic-illustrator-canvas.png" width="150"> -> <img src="http://silkine.github.io/sprite-spreadr/images/pic-spritespreader-result.png" width="300">
+src="http://silkine.github.io/sprite-spreadr/images/pic-illustrator-canvas.png" width="150" alt="original illustrator file"> -> <img src="http://silkine.github.io/sprite-spreadr/images/pic-spritespreader-result.png" alt="spriteSpreaded icons" width="300">
 
 <sub>Icons created by Sergey Demushkin from the Noun Project</sub>
 
