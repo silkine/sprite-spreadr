@@ -29,6 +29,28 @@ For this it is important, that you give your icons id names. You can do this in 
 
 >  Please note that css, js and html markdown are all merged into the html. This is not meant to be beautiful but could come in handy, as you could easily pass the html on or download it and open it offline on your browser without any hassle or additional files. The image folder contains the images of the help layer.
 
-[illustrator]: http://goo.gl/ujoeHl "opened illustrator file"
-[spritespreadr]: http://goo.gl/qjv0fn "SpriteSpreadr result"
+## Using one SVG file with the &lt;use&gt; tag and ID in HTML
+1. Put your SVG code inline at the top of your &lt;body&gt; tag.
+2. Insert a &lt;defs&gt; tag inside the &lt;svg&gt; thus wrapping all contents with it
+  ```html
+  <svg>
+    <defs>
+      <g id="icon-id1">
+        <!-- paths, groups, circles, rects etc. -->
+      <g>
+      <g id="icon-id2">
+        <!-- paths, groups, circles, rects etc. -->
+      <g>
+    </defs>
+  </svg>
+  ```
 
+3. Reference the icons you need to use by ID in the &lt;use&gt; tag inside a &lt;svg&gt; tag :
+&lt;use xlink:href="#id"&gt;:
+  ```html
+  <svg viewBox="0 0 32 32" class="icon-class">
+    <use xlink:href="#icon-id1"></use>
+  </svg>
+  ```
+  
+Find more about this [on css tricks](https://css-tricks.com/svg-sprites-use-better-icon-fonts/) 
