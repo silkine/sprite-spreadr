@@ -1,4 +1,4 @@
-# SpriteSpreader
+# SpriteSpreadr
 ## A tool, that helps you previewing your SVG icon sprites.
 
 
